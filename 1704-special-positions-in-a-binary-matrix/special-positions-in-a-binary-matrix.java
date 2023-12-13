@@ -1,38 +1,35 @@
 class Solution {
-
     public int numSpecial(int[][] mat) {
+        
+        int specials = 0;
 
-        int count=0;
-        System.out.println(mat[0].length);
+        for (int i = 0; i < mat.length; i++) {
+            int index = Row(mat, i);
+            if (index >= 0 && Column(mat, i, index))
+                specials++;
+        }
 
-        for(int i=0;i<mat.length;i++){
+        return specials;
+    }
 
-            for(int j=0;j<mat[0].length;j++){
-
-                if(mat[i][j]==1){
-
-                    if(check(mat,i,j)){
-                        count++;
-                    }
-
-                }
-
+    private int Row(int[][] mat, int i) {
+        int index = -1;
+        for (int j = 0; j < mat[0].length; j++) {
+            if (mat[i][j] == 1) {
+                if (index >= 0)
+                    return -1;
+                else
+                    index = j;
             }
         }
-        return count;
+        return index;
     }
-    public static boolean check(int [][]mat,int row,int col){
-     
-     for(int i=0;i<mat[0].length;i++){
-         
-         if(mat[row][i]!=0 && i!=col ) return false;
-     }
-     
-      for(int i=0;i<mat.length;i++){
-         if(mat[i][col]!=0 && i!=row) return false;
-     }
-     return true;
 
-
+    private boolean Column(int[][] mat, int i, int index) {
+        for (int j = 0; j < mat.length; j++) {
+            if (mat[j][index] == 1 && j != i)
+                return false;
+        }
+        return true;
     }
 }
