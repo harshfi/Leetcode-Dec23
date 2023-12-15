@@ -10,7 +10,6 @@ class Solution {
         for(List<String> p: paths){
             if(!set.contains(p.get(1))) return p.get(1);
         }
-       
-        return "no";
+        return "";
     }
 }
