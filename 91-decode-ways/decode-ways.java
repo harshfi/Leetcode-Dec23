@@ -1,24 +1,32 @@
-
 class Solution {
     public int numDecodings(String s) {
-        
-        if (s.charAt(0) == '0') return 0;
-        int n = s.length(); 
-       
-        int[]  dp = new int[n + 1];
-       
-        dp[0] = 1;
-        for (int i = 1; i <= n; i++) {
-            
-            if (s.charAt(i - 1) != '0') dp[i] = dp[i - 1];
-           
-            if (i >= 2) {
-               
-                int x = (s.charAt(i - 2) - '0') * 10 + s.charAt(i - 1) - '0';
-               
-                if (10 <= x && x <= 26) dp[i] += dp[i - 2];
-            }
-        }
-        return dp[n];
+        int dp[] = new int[s.length()+1];
+        Arrays.fill(dp,-1);
+         return decode(s,0,dp);
+         
     }
+
+    public int decode(String s,int i,int[]dp){
+    if(i==s.length())
+    {
+        return 1;
+    }
+    if(i>s.length())
+    return 0;
+
+    if(dp[i]!=-1)
+    return dp[i];
+    int ans1=0;
+    if(s.charAt(i)!='0')
+    ans1=decode(s,i+1,dp);
+    int ans2=0;
+    if(s.length()>i+1)
+    {
+        int a=Integer.parseInt(s.substring(i,i+2));
+        if(s.charAt(i)!='0' && a<=26)
+        {
+           ans2= decode(s,i+2,dp);
+        }
+    }
+    return dp[i]=ans1+ans2;}
 }
