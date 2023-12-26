@@ -15,7 +15,7 @@ class Solution {
             return;
         }
         if(i>=s.length() || str.length()-4>=s.length()|| dot>=4) {
-            System.out.println(str);
+           
             return;
         }
        
