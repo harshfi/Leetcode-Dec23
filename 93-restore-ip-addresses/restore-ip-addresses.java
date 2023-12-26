@@ -2,6 +2,7 @@ class Solution {
     List<String> list;
     public List<String> restoreIpAddresses(String s) {
         list= new ArrayList<>();
+        if(s.length()>12) return list;
         form(s,"",0,0);
         return list;
         
