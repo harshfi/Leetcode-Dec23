@@ -19,7 +19,7 @@ class Solution {
         
     }
     public TreeNode makeTree(int []nums,int start, int end){
-        if(start<0|| end>=nums.length||start>=nums.length ||end<0||start>end) return null;
+        if(start<0|| end>=nums.length||start>end) return null;
 
         TreeNode root= new TreeNode();
         int mid=(start+end)/2;
